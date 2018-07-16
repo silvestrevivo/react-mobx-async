@@ -42,3 +42,22 @@ class WeatherStore {
   }
 }
 ```
+
+Other solution will be using runInAction() inside of the promises:
+
+```javascript
+class WeatherStore {
+  @observable weatherData = {};
+
+  @action loaderWeather = (city) => {
+    fetch(`https://abnormal-weather-api.herokuapp.com/cities/search?city=${city}`)
+      .then(response => response.json())
+      .then(data => {
+        runInAction(() => {
+          this.weatherData = data
+          console.log('data', data)
+        })
+      })
+  }
+}
+```
