@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
+import JSONPretty from 'react-json-pretty'
 
-const App = () => (
-  <div className="container">
-    <img
-      src="https://cdn-images-1.medium.com/max/1600/1*ypTuZbQNEV1oGkAfn85AUA.png"
-      alt="logo-react" />
-    <h1>React Starter</h1>
-  </div>
-)
+class App extends Component {
+  state = {
+    weatherData: {}
+  }
+
+  componentDidMount () {
+    fetch('https://abnormal-weather-api.herokuapp.com/cities/search?city=Amsterdam')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          weatherData: data
+        })
+        console.log(data)
+      })
+  }
+
+  render () {
+    return (
+      <div className="container">
+        <JSONPretty json={this.state.weatherData} />
+      </div>
+    )
+  }
+}
 
 export default hot(module)(App)

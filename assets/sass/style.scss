@@ -3,7 +3,7 @@ body{
   margin: 0;
   position: relative;
   height: 100vh;
-  background-color: #222;
+  background-color: rgb(129, 129, 129);
 }
 
 .container{
@@ -14,19 +14,4 @@ body{
   transform: translate(-50%,-50%);
   color: #03d8fe;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  text-align: center;
-
-  h1 {
-    margin-top: 40px;
-  }
-
-  img {
-    transform: rotate(45deg);
-    animation: Logo-spin infinite 30s linear
-  }
-}
-
-@keyframes Logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
