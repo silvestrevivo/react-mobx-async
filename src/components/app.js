@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { hot } from 'react-hot-loader'
 import {observer, inject} from 'mobx-react'
 import PropTypes from 'prop-types'
 
@@ -22,4 +21,4 @@ class App extends Component {
   }
 }
 
-export default (inject('store'))(observer(hot(module)(App)))
+export default (inject('store'))(observer(App))

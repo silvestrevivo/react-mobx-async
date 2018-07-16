@@ -1,4 +1,6 @@
-import { action, observable } from 'mobx'
+import { configure, action, observable } from 'mobx'
+
+configure({enforceActions: true})
 
 class WeatherStore {
   @observable weatherData = {};
@@ -7,9 +9,13 @@ class WeatherStore {
     fetch(`https://abnormal-weather-api.herokuapp.com/cities/search?city=${city}`)
       .then(response => response.json())
       .then(data => {
-        this.weatherData = data
+        this.setWeather(data)
         console.log('data', data)
       })
+  }
+
+  setWeather = data => {
+    this.weatherData = data
   }
 }
 

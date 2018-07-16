@@ -21,3 +21,24 @@ var store = new WeatherStore()
 
 export default store
 ```
+In MobX4, when we use __enforceActions: true__ we have to take out the change of
+the _observable_ from the promise's callback:
+
+```javascript
+class WeatherStore {
+  @observable weatherData = {};
+
+  @action loaderWeather = (city) => {
+    fetch(`https://abnormal-weather-api.herokuapp.com/cities/search?city=${city}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setWeather(data)
+        console.log('data', data)
+      })
+  }
+
+  setWeather = data => {
+    this.weatherData = data
+  }
+}
+```
