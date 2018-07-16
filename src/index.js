@@ -1,7 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'normalize.css'
 import '../assets/sass/style.scss'
 import App from './components/app'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import { Provider } from 'mobx-react'
+import store from './stores/weatherStore'
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('root'))

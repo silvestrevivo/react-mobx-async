@@ -1,30 +1,25 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
-import JSONPretty from 'react-json-pretty'
+import {observer, inject} from 'mobx-react'
+import PropTypes from 'prop-types'
 
 class App extends Component {
-  state = {
-    weatherData: {}
+  static propTypes = {
+    store: PropTypes.object
   }
 
   componentDidMount () {
-    fetch('https://abnormal-weather-api.herokuapp.com/cities/search?city=Amsterdam')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          weatherData: data
-        })
-        console.log(data)
-      })
+    this.props.store.loaderWeather('Amsterdam')
   }
 
   render () {
+    console.log('store', this.props.store)
     return (
       <div className="container">
-        <JSONPretty json={this.state.weatherData} />
+        Console displays the json object
       </div>
     )
   }
 }
 
-export default hot(module)(App)
+export default (inject('store'))(observer(hot(module)(App)))
