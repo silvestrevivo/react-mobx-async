@@ -8,7 +8,7 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.props.store.loaderWeather('Amsterdam')
+    this.props.store.loadWeatherGenerator('Amsterdam')
   }
 
   render () {
